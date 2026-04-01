@@ -17,7 +17,7 @@ export interface Note {
     userId: string;
     title: string;
     content: string;
-    isAiGenerated: boolean;
+    isAiGenerated: string;
     createdAt: Date;
     updatedAt: Date;
 }
