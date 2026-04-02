@@ -17,7 +17,7 @@ interface TopicCardProps {
 const statusConfig = {
   not_started: {
     label: "Not Started",
-    className: "bg-slate-700 text-slate-300 hover:bg-slate-700",
+    className: "bg-slate-700 text-foreground hover:bg-slate-700",
   },
   in_progress: {
     label: "In Progress",
@@ -45,14 +45,14 @@ export default function TopicCard({ topic, onDelete }: TopicCardProps) {
 
   return (
     <Card
-      className="bg-slate-900 border-slate-800 hover:border-slate-600 transition-colors cursor-pointer group"
+      className="bg-card border-slate-800 hover:border-slate-600 transition-colors cursor-pointer group"
       onClick={() => router.push(`/topics/${topic.id}`)}
     >
       <CardHeader className="pb-3">
         <div className="flex items-start justify-between gap-2">
           <div className="flex items-center gap-2 min-w-0">
-            <div className="p-1.5 bg-blue-600/20 rounded-md shrink-0">
-              <BookOpen className="h-4 w-4 text-blue-400" />
+            <div className="p-1.5 bg-primary text-primary-foreground/20 rounded-md shrink-0">
+              <BookOpen className="h-4 w-4 text-primary" />
             </div>
             <h3 className="text-white font-semibold truncate">{topic.name}</h3>
           </div>
@@ -67,7 +67,7 @@ export default function TopicCard({ topic, onDelete }: TopicCardProps) {
         </div>
 
         {topic.description && (
-          <p className="text-slate-400 text-sm line-clamp-2 mt-1">
+          <p className="text-muted-foreground text-sm line-clamp-2 mt-1">
             {topic.description}
           </p>
         )}
@@ -76,16 +76,16 @@ export default function TopicCard({ topic, onDelete }: TopicCardProps) {
       <CardContent className="space-y-3">
         <div className="flex items-center justify-between">
           <Badge className={status.className}>{status.label}</Badge>
-          <span className="text-slate-400 text-sm">{topic.progress}%</span>
+          <span className="text-muted-foreground text-sm">{topic.progress}%</span>
         </div>
 
         <Progress
           value={topic.progress}
-          className="h-1.5 bg-slate-800"
+          className="h-1.5 bg-card"
         />
 
         <div className="flex items-center justify-end">
-          <span className="text-blue-400 text-xs flex items-center gap-1 group-hover:gap-2 transition-all">
+          <span className="text-primary text-xs flex items-center gap-1 group-hover:gap-2 transition-all">
             Open topic <ArrowRight className="h-3 w-3" />
           </span>
         </div>

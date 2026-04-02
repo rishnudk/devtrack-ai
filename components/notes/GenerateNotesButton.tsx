@@ -77,20 +77,20 @@ export default function GenerateNotesButton({
       <DialogTrigger asChild>
         <Button
           variant="outline"
-          className="border-purple-700 text-purple-400 hover:text-purple-300 hover:bg-purple-400/10 hover:border-purple-600"
+          className="border-purple-700 text-primary hover:text-purple-300 hover:bg-primary/10 hover:border-purple-600"
         >
           <Sparkles className="h-4 w-4 mr-2" />
           Generate with AI
         </Button>
       </DialogTrigger>
 
-      <DialogContent className="bg-slate-900 border-slate-800 text-white">
+      <DialogContent className="bg-card border-slate-800 text-white">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">
-            <Sparkles className="h-5 w-5 text-purple-400" />
+            <Sparkles className="h-5 w-5 text-primary" />
             Generate AI Notes
           </DialogTitle>
-          <DialogDescription className="text-slate-400">
+          <DialogDescription className="text-muted-foreground">
             AI will generate structured notes for{" "}
             <span className="text-white font-medium">{topicName}</span>.
           </DialogDescription>
@@ -98,20 +98,20 @@ export default function GenerateNotesButton({
 
         <div className="py-4 space-y-4">
           <div className="space-y-2">
-            <Label className="text-slate-300">
+            <Label className="text-foreground">
               Subtopic{" "}
-              <span className="text-slate-500 font-normal">(optional)</span>
+              <span className="text-muted-foreground font-normal">(optional)</span>
             </Label>
             <Input
               placeholder={`e.g. useState, useEffect, Custom Hooks...`}
               value={subtopic}
               onChange={(e) => setSubtopic(e.target.value)}
-              className="bg-slate-800 border-slate-700 text-white placeholder:text-slate-500"
+              className="bg-card border-slate-700 text-white placeholder:text-muted-foreground"
               onKeyDown={(e) => {
                 if (e.key === "Enter" && !loading) handleGenerate();
               }}
             />
-            <p className="text-slate-500 text-xs">
+            <p className="text-muted-foreground text-xs">
               Leave empty to generate general notes about {topicName}
             </p>
           </div>
@@ -121,7 +121,7 @@ export default function GenerateNotesButton({
           <Button
             variant="ghost"
             onClick={() => setOpen(false)}
-            className="text-slate-400 hover:text-white"
+            className="text-muted-foreground hover:text-white"
             disabled={loading}
           >
             Cancel

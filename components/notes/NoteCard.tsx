@@ -56,14 +56,14 @@ export default function NoteCard({ note, onDelete, onUpdate }: NoteCardProps) {
   };
 
   return (
-    <Card className="bg-slate-900 border-slate-800 group">
+    <Card className="bg-card border-slate-800 group">
       <CardHeader className="pb-2">
         <div className="flex items-start justify-between gap-2">
           {editing ? (
             <Input
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              className="bg-slate-800 border-slate-700 text-white h-8 text-sm font-semibold"
+              className="bg-card border-slate-700 text-white h-8 text-sm font-semibold"
             />
           ) : (
             <div className="flex items-center gap-2 min-w-0">
@@ -71,7 +71,7 @@ export default function NoteCard({ note, onDelete, onUpdate }: NoteCardProps) {
                 {note.title}
               </h4>
               {note.isAiGenerated === "true" && (
-                <Badge className="bg-purple-500/20 text-purple-400 hover:bg-purple-500/20 shrink-0 text-xs">
+                <Badge className="bg-purple-500/20 text-primary hover:bg-purple-500/20 shrink-0 text-xs">
                   <Sparkles className="h-2.5 w-2.5 mr-1" />
                   AI
                 </Badge>
@@ -94,7 +94,7 @@ export default function NoteCard({ note, onDelete, onUpdate }: NoteCardProps) {
                 <Button
                   size="icon"
                   variant="ghost"
-                  className="h-7 w-7 text-slate-400 hover:text-white"
+                  className="h-7 w-7 text-muted-foreground hover:text-white"
                   onClick={handleCancel}
                 >
                   <X className="h-3.5 w-3.5" />
@@ -105,7 +105,7 @@ export default function NoteCard({ note, onDelete, onUpdate }: NoteCardProps) {
                 <Button
                   size="icon"
                   variant="ghost"
-                  className="h-7 w-7 text-slate-600 hover:text-blue-400 hover:bg-blue-400/10 opacity-0 group-hover:opacity-100 transition-opacity"
+                  className="h-7 w-7 text-slate-600 hover:text-primary hover:bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity"
                   onClick={() => setEditing(true)}
                 >
                   <Pencil className="h-3.5 w-3.5" />
@@ -129,10 +129,10 @@ export default function NoteCard({ note, onDelete, onUpdate }: NoteCardProps) {
           <Textarea
             value={content}
             onChange={(e) => setContent(e.target.value)}
-            className="bg-slate-800 border-slate-700 text-white text-sm resize-none min-h-[120px]"
+            className="bg-card border-slate-700 text-white text-sm resize-none min-h-[120px]"
           />
         ) : (
-          <p className="text-slate-300 text-sm whitespace-pre-wrap leading-relaxed">
+          <p className="text-foreground text-sm whitespace-pre-wrap leading-relaxed">
             {note.content}
           </p>
         )}

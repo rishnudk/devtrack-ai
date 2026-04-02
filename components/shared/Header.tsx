@@ -21,13 +21,13 @@ export default function Header({ title, description }: HeaderProps) {
     : "?";
 
   return (
-    <header className="h-16 border-b border-slate-800 bg-slate-950 flex items-center justify-between px-6">
+    <header className="h-16 border-b border-slate-800 bg-background flex items-center justify-between px-6">
       <div>
         <h2 className="text-white font-semibold text-lg leading-none">
           {title}
         </h2>
         {description && (
-          <p className="text-slate-400 text-sm mt-1">{description}</p>
+          <p className="text-muted-foreground text-sm mt-1">{description}</p>
         )}
       </div>
 
@@ -36,12 +36,12 @@ export default function Header({ title, description }: HeaderProps) {
           <p className="text-white text-sm font-medium leading-none">
             {session?.user?.name ?? "Developer"}
           </p>
-          <p className="text-slate-400 text-xs mt-1">
+          <p className="text-muted-foreground text-xs mt-1">
             {session?.user?.email ?? ""}
           </p>
         </div>
-        <Avatar className="h-9 w-9 bg-blue-600">
-          <AvatarFallback className="bg-blue-600 text-white text-sm font-semibold">
+        <Avatar className="h-9 w-9 bg-primary text-primary-foreground">
+          <AvatarFallback className="bg-primary text-primary-foreground text-white text-sm font-semibold">
             {initials}
           </AvatarFallback>
         </Avatar>

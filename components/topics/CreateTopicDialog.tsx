@@ -53,16 +53,16 @@ export default function CreateTopicDialog({
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button className="bg-blue-600 hover:bg-blue-700">
+        <Button className="bg-primary text-primary-foreground hover:bg-primary/90">
           <Plus className="h-4 w-4 mr-2" />
           New Topic
         </Button>
       </DialogTrigger>
 
-      <DialogContent className="bg-slate-900 border-slate-800 text-white">
+      <DialogContent className="bg-card border-slate-800 text-white">
         <DialogHeader>
           <DialogTitle>Create New Topic</DialogTitle>
-          <DialogDescription className="text-slate-400">
+          <DialogDescription className="text-muted-foreground">
             Add a new topic to track your learning progress.
           </DialogDescription>
         </DialogHeader>
@@ -70,26 +70,26 @@ export default function CreateTopicDialog({
         <form onSubmit={handleSubmit}>
           <div className="space-y-4 py-4">
             <div className="space-y-2">
-              <Label className="text-slate-300">Topic Name</Label>
+              <Label className="text-foreground">Topic Name</Label>
               <Input
                 placeholder="e.g. React Hooks, Node.js, MongoDB"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 required
-                className="bg-slate-800 border-slate-700 text-white placeholder:text-slate-500"
+                className="bg-card border-slate-700 text-white placeholder:text-muted-foreground"
               />
             </div>
 
             <div className="space-y-2">
-              <Label className="text-slate-300">
+              <Label className="text-foreground">
                 Description{" "}
-                <span className="text-slate-500 font-normal">(optional)</span>
+                <span className="text-muted-foreground font-normal">(optional)</span>
               </Label>
               <Textarea
                 placeholder="What do you want to learn about this topic?"
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
-                className="bg-slate-800 border-slate-700 text-white placeholder:text-slate-500 resize-none"
+                className="bg-card border-slate-700 text-white placeholder:text-muted-foreground resize-none"
                 rows={3}
               />
             </div>
@@ -100,13 +100,13 @@ export default function CreateTopicDialog({
               type="button"
               variant="ghost"
               onClick={() => setOpen(false)}
-              className="text-slate-400 hover:text-white"
+              className="text-muted-foreground hover:text-white"
             >
               Cancel
             </Button>
             <Button
               type="submit"
-              className="bg-blue-600 hover:bg-blue-700"
+              className="bg-primary text-primary-foreground hover:bg-primary/90"
               disabled={loading || !name.trim()}
             >
               {loading ? (

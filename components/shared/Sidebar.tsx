@@ -44,18 +44,18 @@ export default function Sidebar() {
   };
 
   return (
-    <aside className="w-64 min-h-screen bg-slate-900 border-r border-slate-800 flex flex-col">
+    <aside className="w-64 min-h-screen bg-card border-r border-slate-800 flex flex-col">
       {/* Logo */}
       <div className="p-6 border-b border-slate-800">
         <div className="flex items-center gap-3">
-          <div className="p-2 bg-blue-600 rounded-lg">
+          <div className="p-2 bg-primary text-primary-foreground rounded-lg">
             <Code2 className="h-5 w-5 text-white" />
           </div>
           <div>
             <h1 className="text-white font-bold text-lg leading-none">
               DevTrack
             </h1>
-            <p className="text-slate-400 text-xs mt-1">AI Learning Tracker</p>
+            <p className="text-muted-foreground text-xs mt-1">AI Learning Tracker</p>
           </div>
         </div>
       </div>
@@ -72,8 +72,8 @@ export default function Sidebar() {
                 className={cn(
                   "flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors",
                   isActive
-                    ? "bg-blue-600 text-white"
-                    : "text-slate-400 hover:text-white hover:bg-slate-800"
+                    ? "bg-primary text-primary-foreground text-white"
+                    : "text-muted-foreground hover:text-white hover:bg-card"
                 )}
               >
                 <Icon className="h-4 w-4" />
@@ -88,7 +88,7 @@ export default function Sidebar() {
       <div className="p-4 border-t border-slate-800">
         <Button
           variant="ghost"
-          className="w-full justify-start gap-3 text-slate-400 hover:text-white hover:bg-slate-800"
+          className="w-full justify-start gap-3 text-muted-foreground hover:text-white hover:bg-card"
           onClick={handleSignOut}
         >
           <LogOut className="h-4 w-4" />

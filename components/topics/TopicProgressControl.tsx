@@ -23,7 +23,7 @@ const statusOptions: { value: TopicStatus; label: string; className: string }[] 
   {
     value: "not_started",
     label: "Not Started",
-    className: "text-slate-300",
+    className: "text-foreground",
   },
   {
     value: "in_progress",
@@ -88,26 +88,26 @@ export default function TopicProgressControl({
   const currentStatus = statusOptions.find((s) => s.value === topic.status);
 
   return (
-    <div className="bg-slate-900 border border-slate-800 rounded-lg p-4 space-y-4">
+    <div className="bg-card border border-slate-800 rounded-lg p-4 space-y-4">
       <h3 className="text-white font-semibold text-sm">Progress Tracking</h3>
 
       {/* Status selector */}
       <div className="space-y-2">
-        <label className="text-slate-400 text-xs">Status</label>
+        <label className="text-muted-foreground text-xs">Status</label>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button
               variant="outline"
-              className="w-full justify-between bg-slate-800 border-slate-700 text-white hover:bg-slate-700"
+              className="w-full justify-between bg-card border-slate-700 text-white hover:bg-slate-700"
               disabled={saving}
             >
               <span className={cn("font-medium", currentStatus?.className)}>
                 {currentStatus?.label}
               </span>
-              <ChevronDown className="h-4 w-4 text-slate-400" />
+              <ChevronDown className="h-4 w-4 text-muted-foreground" />
             </Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent className="bg-slate-800 border-slate-700 w-48">
+          <DropdownMenuContent className="bg-card border-slate-700 w-48">
             {statusOptions.map((option) => (
               <DropdownMenuItem
                 key={option.value}
@@ -127,7 +127,7 @@ export default function TopicProgressControl({
       {/* Progress slider */}
       <div className="space-y-3">
         <div className="flex items-center justify-between">
-          <label className="text-slate-400 text-xs">Progress</label>
+          <label className="text-muted-foreground text-xs">Progress</label>
           <span className="text-white text-sm font-semibold">{progress}%</span>
         </div>
 
@@ -149,7 +149,7 @@ export default function TopicProgressControl({
         <Button
           onClick={handleProgressSave}
           size="sm"
-          className="w-full bg-blue-600 hover:bg-blue-700"
+          className="w-full bg-primary text-primary-foreground hover:bg-primary/90"
           disabled={saving || progress === topic.progress}
         >
           {saving ? (

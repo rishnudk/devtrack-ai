@@ -20,7 +20,7 @@ import QuizModal from "@/components/ai/QuizModal";
 const statusConfig = {
   not_started: {
     label: "Not Started",
-    className: "bg-slate-700 text-slate-300",
+    className: "bg-slate-700 text-foreground",
   },
   in_progress: {
     label: "In Progress",
@@ -87,7 +87,7 @@ export default function TopicDetailPage({
         {/* Back */}
         <Button
           variant="ghost"
-          className="text-slate-400 hover:text-white -ml-2"
+          className="text-muted-foreground hover:text-white -ml-2"
           onClick={() => router.push("/topics")}
         >
           <ArrowLeft className="h-4 w-4 mr-2" />
@@ -97,16 +97,16 @@ export default function TopicDetailPage({
         {topicLoading ? (
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             <div className="lg:col-span-2">
-              <Skeleton className="h-24 bg-slate-800 rounded-lg" />
+              <Skeleton className="h-24 bg-card rounded-lg" />
             </div>
-            <Skeleton className="h-48 bg-slate-800 rounded-lg" />
+            <Skeleton className="h-48 bg-card rounded-lg" />
           </div>
         ) : topic ? (
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             {/* Left — notes */}
             <div className="lg:col-span-2 space-y-4">
               {/* Topic info bar */}
-              <div className="bg-slate-900 border border-slate-800 rounded-lg p-4 space-y-3">
+              <div className="bg-card border border-slate-800 rounded-lg p-4 space-y-3">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
                     <h2 className="text-white font-semibold text-lg">
@@ -118,18 +118,18 @@ export default function TopicDetailPage({
                       </Badge>
                     )}
                   </div>
-                  <span className="text-slate-400 text-sm">
+                  <span className="text-muted-foreground text-sm">
                     {topic.progress}% complete
                   </span>
                 </div>
 
                 {topic.description && (
-                  <p className="text-slate-400 text-sm">{topic.description}</p>
+                  <p className="text-muted-foreground text-sm">{topic.description}</p>
                 )}
 
                 <Progress
                   value={topic.progress}
-                  className="h-1.5 bg-slate-800"
+                  className="h-1.5 bg-card"
                 />
               </div>
 
@@ -137,9 +137,9 @@ export default function TopicDetailPage({
               <div className="space-y-4">
                 <div className="flex items-center justify-between flex-wrap gap-3">
                   <h3 className="text-white font-semibold flex items-center gap-2">
-                    <FileText className="h-4 w-4 text-slate-400" />
+                    <FileText className="h-4 w-4 text-muted-foreground" />
                     Notes
-                    <span className="text-slate-500 font-normal text-sm">
+                    <span className="text-muted-foreground font-normal text-sm">
                       ({notes.length})
                     </span>
                   </h3>
@@ -162,7 +162,7 @@ export default function TopicDetailPage({
                     {[...Array(2)].map((_, i) => (
                       <Skeleton
                         key={i}
-                        className="h-32 bg-slate-800 rounded-lg"
+                        className="h-32 bg-card rounded-lg"
                       />
                     ))}
                   </div>
@@ -171,7 +171,7 @@ export default function TopicDetailPage({
                 {!notesLoading && notes.length === 0 && (
                   <div className="flex flex-col items-center justify-center py-16 text-center border border-slate-800 border-dashed rounded-lg">
                     <FileText className="h-8 w-8 text-slate-600 mb-3" />
-                    <p className="text-slate-400 text-sm">No notes yet</p>
+                    <p className="text-muted-foreground text-sm">No notes yet</p>
                     <p className="text-slate-600 text-xs mt-1">
                       Add your first note above
                     </p>

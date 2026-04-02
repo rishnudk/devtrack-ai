@@ -19,7 +19,7 @@ export default function TopicsPage() {
 
       <main className="flex-1 p-6">
         <div className="flex items-center justify-between mb-6">
-          <p className="text-slate-400 text-sm">
+          <p className="text-muted-foreground text-sm">
             {loading ? "Loading..." : `${topics.length} topic${topics.length !== 1 ? "s" : ""}`}
           </p>
           <CreateTopicDialog onTopicCreated={createTopic} />
@@ -29,7 +29,7 @@ export default function TopicsPage() {
         {loading && (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {[...Array(3)].map((_, i) => (
-              <Skeleton key={i} className="h-48 bg-slate-800 rounded-lg" />
+              <Skeleton key={i} className="h-48 bg-card rounded-lg" />
             ))}
           </div>
         )}
@@ -37,13 +37,13 @@ export default function TopicsPage() {
         {/* Empty state */}
         {!loading && topics.length === 0 && (
           <div className="flex flex-col items-center justify-center py-24 text-center">
-            <div className="p-4 bg-blue-600/10 rounded-full mb-4">
-              <BookOpen className="h-8 w-8 text-blue-400" />
+            <div className="p-4 bg-primary text-primary-foreground/10 rounded-full mb-4">
+              <BookOpen className="h-8 w-8 text-primary" />
             </div>
             <h3 className="text-white font-semibold text-lg mb-2">
               No topics yet
             </h3>
-            <p className="text-slate-400 text-sm max-w-sm mb-6">
+            <p className="text-muted-foreground text-sm max-w-sm mb-6">
               Create your first topic to start tracking what you&apos;re learning.
             </p>
             <CreateTopicDialog onTopicCreated={createTopic} />

@@ -99,17 +99,17 @@ export default function QuizModal({ topicName, notes }: QuizModalProps) {
       <DialogTrigger asChild>
         <Button
           variant="outline"
-          className="border-blue-700 text-blue-400 hover:text-blue-300 hover:bg-blue-400/10 hover:border-blue-600"
+          className="border-blue-700 text-primary hover:text-blue-300 hover:bg-primary/10 hover:border-blue-600"
         >
           <BrainCircuit className="h-4 w-4 mr-2" />
           Take Quiz
         </Button>
       </DialogTrigger>
 
-      <DialogContent className="bg-slate-900 border-slate-800 text-white max-w-lg">
+      <DialogContent className="bg-card border-slate-800 text-white max-w-lg">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">
-            <BrainCircuit className="h-5 w-5 text-blue-400" />
+            <BrainCircuit className="h-5 w-5 text-primary" />
             Quiz — {topicName}
           </DialogTitle>
         </DialogHeader>
@@ -117,19 +117,19 @@ export default function QuizModal({ topicName, notes }: QuizModalProps) {
         {/* Start screen */}
         {quiz.length === 0 && !loading && (
           <div className="py-8 flex flex-col items-center text-center space-y-4">
-            <div className="p-4 bg-blue-600/10 rounded-full">
-              <BrainCircuit className="h-10 w-10 text-blue-400" />
+            <div className="p-4 bg-primary text-primary-foreground/10 rounded-full">
+              <BrainCircuit className="h-10 w-10 text-primary" />
             </div>
             <div>
               <p className="text-white font-semibold">Test your knowledge</p>
-              <p className="text-slate-400 text-sm mt-1">
+              <p className="text-muted-foreground text-sm mt-1">
                 AI will generate 5 questions based on your notes for{" "}
                 <span className="text-white">{topicName}</span>
               </p>
             </div>
             <Button
               onClick={handleGenerate}
-              className="bg-blue-600 hover:bg-blue-700"
+              className="bg-primary text-primary-foreground hover:bg-primary/90"
               disabled={loading}
             >
               <BrainCircuit className="h-4 w-4 mr-2" />
@@ -141,8 +141,8 @@ export default function QuizModal({ topicName, notes }: QuizModalProps) {
         {/* Loading */}
         {loading && (
           <div className="py-12 flex flex-col items-center gap-3">
-            <Loader2 className="h-8 w-8 text-blue-400 animate-spin" />
-            <p className="text-slate-400 text-sm">Generating quiz questions...</p>
+            <Loader2 className="h-8 w-8 text-primary animate-spin" />
+            <p className="text-muted-foreground text-sm">Generating quiz questions...</p>
           </div>
         )}
 
@@ -150,16 +150,16 @@ export default function QuizModal({ topicName, notes }: QuizModalProps) {
         {!loading && quiz.length > 0 && !finished && question && (
           <div className="space-y-4 py-2">
             {/* Progress */}
-            <div className="flex items-center justify-between text-xs text-slate-400">
+            <div className="flex items-center justify-between text-xs text-muted-foreground">
               <span>
                 Question {current + 1} of {quiz.length}
               </span>
               <span>Score: {score}</span>
             </div>
 
-            <div className="w-full bg-slate-800 rounded-full h-1.5">
+            <div className="w-full bg-card rounded-full h-1.5">
               <div
-                className="bg-blue-600 h-1.5 rounded-full transition-all"
+                className="bg-primary text-primary-foreground h-1.5 rounded-full transition-all"
                 style={{ width: `${((current + 1) / quiz.length) * 100}%` }}
               />
             </div>
@@ -182,12 +182,12 @@ export default function QuizModal({ topicName, notes }: QuizModalProps) {
                     className={cn(
                       "w-full text-left px-4 py-3 rounded-lg border text-sm transition-colors",
                       !answered
-                        ? "border-slate-700 text-slate-300 hover:border-slate-500 hover:bg-slate-800"
+                        ? "border-slate-700 text-foreground hover:border-slate-500 hover:bg-card"
                         : isCorrect
                         ? "border-green-500 bg-green-500/10 text-green-400"
                         : isSelected
                         ? "border-red-500 bg-red-500/10 text-red-400"
-                        : "border-slate-700 text-slate-500"
+                        : "border-slate-700 text-muted-foreground"
                     )}
                   >
                     <div className="flex items-center justify-between">
@@ -206,7 +206,7 @@ export default function QuizModal({ topicName, notes }: QuizModalProps) {
 
             {/* Explanation */}
             {answered && (
-              <div className="bg-slate-800 rounded-lg p-3 text-sm text-slate-300">
+              <div className="bg-card rounded-lg p-3 text-sm text-foreground">
                 <span className="text-white font-medium">Explanation: </span>
                 {question.explanation}
               </div>
@@ -215,7 +215,7 @@ export default function QuizModal({ topicName, notes }: QuizModalProps) {
             {answered && (
               <Button
                 onClick={handleNext}
-                className="w-full bg-blue-600 hover:bg-blue-700"
+                className="w-full bg-primary text-primary-foreground hover:bg-primary/90"
               >
                 {current + 1 >= quiz.length ? "See Results" : "Next Question"}
               </Button>
@@ -274,13 +274,13 @@ export default function QuizModal({ topicName, notes }: QuizModalProps) {
               <Button
                 variant="outline"
                 onClick={handleReset}
-                className="border-slate-700 text-slate-300 hover:text-white"
+                className="border-slate-700 text-foreground hover:text-white"
               >
                 Try Again
               </Button>
               <Button
                 onClick={() => setOpen(false)}
-                className="bg-blue-600 hover:bg-blue-700"
+                className="bg-primary text-primary-foreground hover:bg-primary/90"
               >
                 Done
               </Button>

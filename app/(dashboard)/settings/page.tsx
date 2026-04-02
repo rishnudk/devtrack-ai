@@ -5,7 +5,7 @@ export default function SettingsPage() {
     <div className="flex-1 flex flex-col">
       <Header title="Settings" description="Manage your account" />
       <main className="flex-1 p-6">
-        <p className="text-slate-400">Settings coming soon...</p>
+        <p className="text-muted-foreground">Settings coming soon...</p>
       </main>
     </div>
   );

@@ -40,15 +40,15 @@ export default function LoginPage() {
   };
 
   return (
-    <Card className="w-full max-w-md bg-slate-900 border-slate-800">
+    <Card className="w-full max-w-md bg-card border-slate-800">
       <CardHeader className="text-center">
         <div className="flex justify-center mb-2">
-          <div className="p-2 bg-blue-600 rounded-lg">
+          <div className="p-2 bg-primary text-primary-foreground rounded-lg">
             <Code2 className="h-6 w-6 text-white" />
           </div>
         </div>
         <CardTitle className="text-2xl text-white">Welcome back</CardTitle>
-        <CardDescription className="text-slate-400">
+        <CardDescription className="text-muted-foreground">
           Continue your learning journey
         </CardDescription>
       </CardHeader>
@@ -56,7 +56,7 @@ export default function LoginPage() {
       <form onSubmit={handleSubmit}>
         <CardContent className="space-y-4">
           <div className="space-y-2">
-            <Label htmlFor="email" className="text-slate-300">Email</Label>
+            <Label htmlFor="email" className="text-foreground">Email</Label>
             <Input
               id="email"
               type="email"
@@ -64,12 +64,12 @@ export default function LoginPage() {
               value={form.email}
               onChange={(e) => setForm({ ...form, email: e.target.value })}
               required
-              className="bg-slate-800 border-slate-700 text-white placeholder:text-slate-500"
+              className="bg-card border-slate-700 text-white placeholder:text-muted-foreground"
             />
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="password" className="text-slate-300">Password</Label>
+            <Label htmlFor="password" className="text-foreground">Password</Label>
             <Input
               id="password"
               type="password"
@@ -77,7 +77,7 @@ export default function LoginPage() {
               value={form.password}
               onChange={(e) => setForm({ ...form, password: e.target.value })}
               required
-              className="bg-slate-800 border-slate-700 text-white placeholder:text-slate-500"
+              className="bg-card border-slate-700 text-white placeholder:text-muted-foreground"
             />
           </div>
         </CardContent>
@@ -85,7 +85,7 @@ export default function LoginPage() {
         <CardFooter className="flex flex-col gap-4">
           <Button
             type="submit"
-            className="w-full bg-blue-600 hover:bg-blue-700"
+            className="w-full bg-primary text-primary-foreground hover:bg-primary/90"
             disabled={loading}
           >
             {loading ? (
@@ -98,9 +98,9 @@ export default function LoginPage() {
             )}
           </Button>
 
-          <p className="text-sm text-slate-400 text-center">
+          <p className="text-sm text-muted-foreground text-center">
             Don&apos;t have an account?{" "}
-            <Link href="/signup" className="text-blue-400 hover:underline">
+            <Link href="/signup" className="text-primary hover:underline">
               Sign up
             </Link>
           </p>

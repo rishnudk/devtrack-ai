@@ -35,8 +35,8 @@ export default async function DashboardPage() {
       label: "Total Topics",
       value: totalTopics,
       icon: BookOpen,
-      color: "text-blue-400",
-      bg: "bg-blue-400/10",
+      color: "text-primary",
+      bg: "bg-primary/10",
     },
     {
       label: "In Progress",
@@ -56,15 +56,15 @@ export default async function DashboardPage() {
       label: "Total Notes",
       value: totalNotes,
       icon: FileText,
-      color: "text-purple-400",
-      bg: "bg-purple-400/10",
+      color: "text-primary",
+      bg: "bg-primary/10",
     },
   ];
 
   const statusConfig = {
     not_started: {
       label: "Not Started",
-      className: "bg-slate-700 text-slate-300",
+      className: "bg-slate-700 text-foreground",
     },
     in_progress: {
       label: "In Progress",
@@ -89,9 +89,9 @@ export default async function DashboardPage() {
           {stats.map((stat) => {
             const Icon = stat.icon;
             return (
-              <Card key={stat.label} className="bg-slate-900 border-slate-800">
+              <Card key={stat.label} className="bg-card border-slate-800">
                 <CardHeader className="flex flex-row items-center justify-between pb-2">
-                  <CardTitle className="text-slate-400 text-sm font-medium">
+                  <CardTitle className="text-muted-foreground text-sm font-medium">
                     {stat.label}
                   </CardTitle>
                   <div className={`p-2 rounded-lg ${stat.bg}`}>
@@ -111,15 +111,15 @@ export default async function DashboardPage() {
           <h3 className="text-white font-semibold">Recent Topics</h3>
 
           {userTopics.length === 0 ? (
-            <Card className="bg-slate-900 border-slate-800">
+            <Card className="bg-card border-slate-800">
               <CardContent className="flex flex-col items-center justify-center py-16 text-center">
-                <div className="p-4 bg-blue-600/10 rounded-full mb-4">
-                  <BookOpen className="h-8 w-8 text-blue-400" />
+                <div className="p-4 bg-primary text-primary-foreground/10 rounded-full mb-4">
+                  <BookOpen className="h-8 w-8 text-primary" />
                 </div>
                 <h3 className="text-white font-semibold text-lg mb-2">
                   No topics yet
                 </h3>
-                <p className="text-slate-400 text-sm max-w-sm">
+                <p className="text-muted-foreground text-sm max-w-sm">
                   Head to the Topics page to create your first learning topic.
                 </p>
               </CardContent>
@@ -130,7 +130,7 @@ export default async function DashboardPage() {
                 const status = statusConfig[topic.status];
                 return (
                   <Link key={topic.id} href={`/topics/${topic.id}`}>
-                    <Card className="bg-slate-900 border-slate-800 hover:border-slate-600 transition-colors cursor-pointer">
+                    <Card className="bg-card border-slate-800 hover:border-slate-600 transition-colors cursor-pointer">
                       <CardHeader className="pb-2">
                         <div className="flex items-center justify-between">
                           <h4 className="text-white font-medium truncate">
@@ -143,12 +143,12 @@ export default async function DashboardPage() {
                       </CardHeader>
                       <CardContent className="space-y-2">
                         <div className="flex justify-between text-sm">
-                          <span className="text-slate-400">Progress</span>
+                          <span className="text-muted-foreground">Progress</span>
                           <span className="text-white">{topic.progress}%</span>
                         </div>
                         <Progress
                           value={topic.progress}
-                          className="h-1.5 bg-slate-800"
+                          className="h-1.5 bg-card"
                         />
                       </CardContent>
                     </Card>
