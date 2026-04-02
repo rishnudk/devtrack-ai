@@ -14,6 +14,8 @@ import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { ArrowLeft, FileText } from "lucide-react";
 import { toast } from "sonner";
+import GenerateNotesButton from "@/components/notes/GenerateNotesButton";
+import QuizModal from "@/components/ai/QuizModal";
 
 const statusConfig = {
   not_started: {
@@ -133,13 +135,25 @@ export default function TopicDetailPage({
 
               {/* Notes section */}
               <div className="space-y-4">
-                <h3 className="text-white font-semibold flex items-center gap-2">
-                  <FileText className="h-4 w-4 text-slate-400" />
-                  Notes
-                  <span className="text-slate-500 font-normal text-sm">
-                    ({notes.length})
-                  </span>
-                </h3>
+                <div className="flex items-center justify-between flex-wrap gap-3">
+                  <h3 className="text-white font-semibold flex items-center gap-2">
+                    <FileText className="h-4 w-4 text-slate-400" />
+                    Notes
+                    <span className="text-slate-500 font-normal text-sm">
+                      ({notes.length})
+                    </span>
+                  </h3>
+                  <div className="flex items-center gap-2">
+                    <GenerateNotesButton
+                      topicName={topic.name}
+                      onGenerated={createNote}
+                    />
+                    <QuizModal
+                      topicName={topic.name}
+                      notes={notes}
+                    />
+                  </div>
+                </div>
 
                 <AddNoteForm onNoteCreated={createNote} />
 
