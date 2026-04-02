@@ -15,12 +15,10 @@ export async function middleware(request: NextRequest) {
   );
   const isAuthRoute = authRoutes.some((route) => pathname.startsWith(route));
 
-  // Not logged in, trying to access protected route
   if (isProtected && !sessionCookie) {
     return NextResponse.redirect(new URL("/login", request.url));
   }
 
-  // Already logged in, trying to access login/signup
   if (isAuthRoute && sessionCookie) {
     return NextResponse.redirect(new URL("/dashboard", request.url));
   }
