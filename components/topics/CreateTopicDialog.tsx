@@ -1,19 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
-import { Textarea } from "@/components/ui/textarea";
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Plus, Loader2 } from "lucide-react";
 import { toast } from "sonner";
 
@@ -36,14 +24,12 @@ export default function CreateTopicDialog({
     setLoading(true);
     try {
       await onTopicCreated(name, description || undefined);
-      toast.success("Topic created!", {
-        description: `"${name}" has been added.`,
-      });
+      toast.success("Record created successfully.");
       setName("");
       setDescription("");
       setOpen(false);
     } catch (error) {
-      toast.error("Failed to create topic");
+      toast.error("Failed to initialize system record");
       console.error(error);
     } finally {
       setLoading(false);
@@ -53,72 +39,70 @@ export default function CreateTopicDialog({
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button className="bg-primary text-primary-foreground hover:bg-primary/90">
-          <Plus className="h-4 w-4 mr-2" />
-          New Topic
-        </Button>
+        <button className="border border-white bg-white text-black hover:bg-neutral-200 transition-colors px-6 py-2.5 text-sm font-medium flex items-center">
+          <Plus className="h-4 w-4 mr-2" strokeWidth={2.5}/>
+          Initialize Record
+        </button>
       </DialogTrigger>
 
-      <DialogContent className="bg-card border-slate-800 text-white">
-        <DialogHeader>
-          <DialogTitle>Create New Topic</DialogTitle>
-          <DialogDescription className="text-muted-foreground">
-            Add a new topic to track your learning progress.
+      <DialogContent className="bg-[#0A0A0A] border border-neutral-800 text-white p-0 rounded-none w-full max-w-lg">
+        <div className="p-8 border-b border-neutral-900">
+          <DialogTitle className="text-xl font-medium tracking-tight mb-2">Initialize New Record</DialogTitle>
+          <DialogDescription className="text-neutral-500 font-mono text-xs uppercase tracking-widest">
+            System requires a topic identifier and context.
           </DialogDescription>
-        </DialogHeader>
+        </div>
 
         <form onSubmit={handleSubmit}>
-          <div className="space-y-4 py-4">
-            <div className="space-y-2">
-              <Label className="text-foreground">Topic Name</Label>
-              <Input
-                placeholder="e.g. React Hooks, Node.js, MongoDB"
+          <div className="p-8 space-y-6">
+            <div className="space-y-4">
+              <label className="block text-xs font-mono text-neutral-400 uppercase tracking-widest">Identifier [Name]</label>
+              <input
+                placeholder="e.g. React Hooks, Node.js"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 required
-                className="bg-card border-slate-700 text-white placeholder:text-muted-foreground"
+                className="w-full bg-[#111] border border-neutral-800 focus:border-white outline-none px-4 py-3 text-white placeholder:text-neutral-600 transition-colors rounded-none"
               />
             </div>
 
-            <div className="space-y-2">
-              <Label className="text-foreground">
-                Description{" "}
-                <span className="text-muted-foreground font-normal">(optional)</span>
-              </Label>
-              <Textarea
-                placeholder="What do you want to learn about this topic?"
+            <div className="space-y-4">
+              <label className="block text-xs font-mono text-neutral-400 uppercase tracking-widest">
+                Context [Description] <span className="text-neutral-600">-- OPTIONAL</span>
+              </label>
+              <textarea
+                placeholder="Define learning parameters..."
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
-                className="bg-card border-slate-700 text-white placeholder:text-muted-foreground resize-none"
+                className="w-full bg-[#111] border border-neutral-800 focus:border-white outline-none px-4 py-3 text-white placeholder:text-neutral-600 resize-none transition-colors rounded-none"
                 rows={3}
               />
             </div>
           </div>
 
-          <DialogFooter>
-            <Button
+          <div className="p-8 border-t border-neutral-900 flex justify-end gap-4 bg-[#0A0A0A]">
+            <button
               type="button"
-              variant="ghost"
               onClick={() => setOpen(false)}
-              className="text-muted-foreground hover:text-white"
+              className="text-neutral-500 hover:text-white px-6 py-2.5 text-sm font-medium transition-colors border border-transparent"
             >
               Cancel
-            </Button>
-            <Button
+            </button>
+            <button
               type="submit"
-              className="bg-primary text-primary-foreground hover:bg-primary/90"
               disabled={loading || !name.trim()}
+              className="border border-white bg-white text-black hover:bg-neutral-200 disabled:opacity-50 disabled:cursor-not-allowed transition-colors px-8 py-2.5 text-sm font-medium flex items-center justify-center min-w-[140px]"
             >
               {loading ? (
                 <>
                   <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                  Creating...
+                  Processing
                 </>
               ) : (
-                "Create Topic"
+                "Execute"
               )}
-            </Button>
-          </DialogFooter>
+            </button>
+          </div>
         </form>
       </DialogContent>
     </Dialog>

@@ -44,24 +44,24 @@ export default function Sidebar() {
   };
 
   return (
-    <aside className="w-64 min-h-screen bg-card border-r border-slate-800 flex flex-col">
+    <aside className="w-64 min-h-screen bg-[#0A0A0A] border-r border-neutral-900 flex flex-col font-sans">
       {/* Logo */}
-      <div className="p-6 border-b border-slate-800">
-        <div className="flex items-center gap-3">
-          <div className="p-2 bg-primary text-primary-foreground rounded-lg">
-            <Code2 className="h-5 w-5 text-white" />
+      <div className="p-8 border-b border-neutral-900">
+        <div className="flex flex-col gap-4">
+          <div className="w-8 h-8 bg-white flex items-center justify-center rounded-none shadow-none">
+            <Code2 className="h-5 w-5 text-black" strokeWidth={2.5} />
           </div>
           <div>
-            <h1 className="text-white font-bold text-lg leading-none">
+            <h1 className="text-white font-semibold text-xl tracking-tight leading-none">
               DevTrack
             </h1>
-            <p className="text-muted-foreground text-xs mt-1">AI Learning Tracker</p>
+            <p className="text-neutral-500 font-mono text-[10px] uppercase mt-2 tracking-widest">Workspace</p>
           </div>
         </div>
       </div>
 
       {/* Nav */}
-      <nav className="flex-1 p-4 space-y-1">
+      <nav className="flex-1 py-6 space-y-1">
         {navItems.map((item) => {
           const Icon = item.icon;
           const isActive = pathname === item.href;
@@ -70,10 +70,10 @@ export default function Sidebar() {
             <Link key={item.href} href={item.href}>
               <div
                 className={cn(
-                  "flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors",
+                  "flex items-center gap-3 px-8 py-3 text-sm font-medium transition-colors border-l-2",
                   isActive
-                    ? "bg-primary text-primary-foreground text-white"
-                    : "text-muted-foreground hover:text-white hover:bg-card"
+                    ? "border-white bg-[#111] text-white"
+                    : "border-transparent text-neutral-500 hover:text-white hover:bg-[#111]"
                 )}
               >
                 <Icon className="h-4 w-4" />
@@ -85,14 +85,14 @@ export default function Sidebar() {
       </nav>
 
       {/* Sign out */}
-      <div className="p-4 border-t border-slate-800">
+      <div className="p-4 border-t border-neutral-900">
         <Button
           variant="ghost"
-          className="w-full justify-start gap-3 text-muted-foreground hover:text-white hover:bg-card"
+          className="w-full justify-start gap-3 text-neutral-500 hover:text-white hover:bg-[#111] rounded-none h-12"
           onClick={handleSignOut}
         >
           <LogOut className="h-4 w-4" />
-          Sign out
+          <span className="font-medium text-sm">Sign out</span>
         </Button>
       </div>
     </aside>

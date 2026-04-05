@@ -1,7 +1,6 @@
 "use client";
 
 import { useSession } from "@/lib/auth/client";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 
 interface HeaderProps {
   title: string;
@@ -21,30 +20,28 @@ export default function Header({ title, description }: HeaderProps) {
     : "?";
 
   return (
-    <header className="h-16 border-b border-slate-800 bg-background flex items-center justify-between px-6">
+    <header className="h-24 border-b border-neutral-900 bg-[#0A0A0A] flex items-center justify-between px-10 font-sans">
       <div>
-        <h2 className="text-white font-semibold text-lg leading-none">
+        <h2 className="text-white font-medium text-2xl tracking-tight leading-none">
           {title}
         </h2>
         {description && (
-          <p className="text-muted-foreground text-sm mt-1">{description}</p>
+          <p className="text-neutral-500 text-sm mt-3 font-light">{description}</p>
         )}
       </div>
 
-      <div className="flex items-center gap-3">
-        <div className="text-right">
-          <p className="text-white text-sm font-medium leading-none">
+      <div className="flex items-center gap-4">
+        <div className="text-right hidden sm:block">
+          <p className="text-white text-sm font-medium leading-none mb-1">
             {session?.user?.name ?? "Developer"}
           </p>
-          <p className="text-muted-foreground text-xs mt-1">
-            {session?.user?.email ?? ""}
+          <p className="text-neutral-600 text-xs font-mono">
+            {session?.user?.email ?? "USER"}
           </p>
         </div>
-        <Avatar className="h-9 w-9 bg-primary text-primary-foreground">
-          <AvatarFallback className="bg-primary text-primary-foreground text-white text-sm font-semibold">
-            {initials}
-          </AvatarFallback>
-        </Avatar>
+        <div className="w-10 h-10 bg-white text-black flex items-center justify-center text-sm font-bold tracking-widest border border-neutral-800">
+          {initials}
+        </div>
       </div>
     </header>
   );
