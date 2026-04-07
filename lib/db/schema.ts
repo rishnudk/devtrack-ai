@@ -10,6 +10,7 @@ export const topicStatusEnum = pgEnum("topic_status", [
 // --- Users ---
 export const users = pgTable("users", {
   id: text("id").primaryKey(),
+  role: text("role").default("user").notNull(),
   name: text("name").notNull(),
   email: text("email").notNull().unique(),
   emailVerified: boolean("email_verified").default(false).notNull(),
@@ -75,14 +76,71 @@ export const topics = pgTable("topics", {
 export const notes = pgTable("notes", {
   id: text("id").primaryKey(),
   topicId: text("topic_id")
-    .notNull()
     .references(() => topics.id, { onDelete: "cascade" }),
+  selectedTopicId: text("selected_topic_id")
+    .references(() => userSelectedTopics.id, { onDelete: "cascade" }),
   userId: text("user_id")
     .notNull()
     .references(() => users.id, { onDelete: "cascade" }),
   title: text("title").notNull(),
   content: text("content").notNull(),
   isAiGenerated: text("is_ai_generated").default("false"),
+  createdAt: timestamp("created_at", { mode: "date" }).defaultNow().notNull(),
+  updatedAt: timestamp("updated_at", { mode: "date" }).defaultNow().notNull(),
+});
+
+export const topicCategories = pgTable("topic_categories", {
+  id: text("id").primaryKey(),
+  name: text("name").notNull(),
+  description: text("description"),
+  icon: text("icon"),
+  cretedBy: text("creted_by").notNull().references(() => users.id, { onDelete: "cascade" }),
+  createdAt: timestamp("created_at", { mode: "date" }).defaultNow().notNull(),
+  updatedAt: timestamp("updated_at", { mode: "date" }).defaultNow().notNull(),
+})
+
+export const subtopics = pgTable("subtopics", {
+  id: text("id").primaryKey(),
+  categoryId: text("category_id")
+    .notNull()
+    .references(() => topicCategories.id, { onDelete: "cascade" }),
+  name: text("name").notNull(),
+  description: text("description"),
+  createdBy: text("created_by")
+    .notNull()
+    .references(() => users.id, { onDelete: "cascade" }),
+  createdAt: timestamp("created_at", { mode: "date" }).defaultNow().notNull(),
+});
+
+
+export const subtopic_notes = pgTable("subtopic_notes", {
+  id: text("id").primaryKey(),
+  subtopicId: text("subtopic_id")
+    .notNull()
+    .references(() => subtopics.id, { onDelete: "cascade" }),
+  name: text("name").notNull(),
+  description: text("description"),
+  createdBy: text("created_by")
+    .notNull()
+    .references(() => users.id, { onDelete: "cascade" }),
+  createdAt: timestamp("created_at", { mode: "date" }).defaultNow().notNull(),
+});
+
+export const userSelectedTopics = pgTable("user_selected_topics", {
+  id: text("id").primaryKey(),
+  userId: text("user_id")
+    .notNull()
+    .references(() => users.id, { onDelete: "cascade" }),
+  categoryId: text("category_id")
+    .notNull()
+    .references(() => topicCategories.id, { onDelete: "cascade" }),
+  subtopicId: text("subtopic_id")
+    .notNull()
+    .references(() => subtopics.id, { onDelete: "cascade" }),
+  conceptId: text("concept_id")
+    .references(() => subtopic_notes.id, { onDelete: "cascade" }),
+  status: topicStatusEnum("status").default("not_started").notNull(),
+  progress: integer("progress").default(0).notNull(),
   createdAt: timestamp("created_at", { mode: "date" }).defaultNow().notNull(),
   updatedAt: timestamp("updated_at", { mode: "date" }).defaultNow().notNull(),
 });
