@@ -11,6 +11,8 @@ import {
   Settings,
   LogOut,
   Code2,
+  Library,
+  ListChecks,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
@@ -20,6 +22,16 @@ const navItems = [
     label: "Dashboard",
     href: "/dashboard",
     icon: LayoutDashboard,
+  },
+  {
+    label: "Catalog",
+    href: "/catalog",
+    icon: Library,
+  },
+  {
+    label: "My Topics",
+    href: "/my-topics",
+    icon: ListChecks,
   },
   {
     label: "Topics",

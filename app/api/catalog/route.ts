@@ -3,7 +3,6 @@ import { auth } from "@/lib/auth";
 import { getSessionWithRole, isAdmin } from "@/lib/auth/admin";
 import { db } from "@/lib/db";
 import { topicCategories, subtopics, subtopic_notes } from "@/lib/db/schema";
-import { eq } from "drizzle-orm";
 import { generateId } from "@/lib/utils";
 import { headers } from "next/headers";
 
