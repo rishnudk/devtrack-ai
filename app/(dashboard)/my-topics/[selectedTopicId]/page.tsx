@@ -51,9 +51,7 @@ export default function SelectedTopicDetailPage({
       const data = await res.json();
 
       // Enrich with catalog data
-      const [catRes, subRes] = await Promise.all([
-        fetch(`/api/catalog`).then((r) => r.json()),
-      ]);
+      const catRes = await fetch(`/api/catalog`).then((r) => r.json());
 
       // Find category and subtopic from catalog
       let category = null;
