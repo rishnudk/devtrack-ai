@@ -43,7 +43,7 @@ export async function GET() {
         .filter((s) => s.categoryId === category.id)
         .map((subtopic) => ({
           ...subtopic,
-          concepts: allConcepts.filter((c) => c.subtopicId === subtopic.id),
+          subtopic_notes: allConcepts.filter((c) => c.subtopicId === subtopic.id),
         })),
     }));
 
