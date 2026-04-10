@@ -62,7 +62,7 @@ export function useTopics() {
   };
 
   useEffect(() => {
-    fetchTopics();
+    fetchTopics()
   }, [fetchTopics]);
 
   return { topics, loading, createTopic, deleteTopic, updateTopic, fetchTopics };
