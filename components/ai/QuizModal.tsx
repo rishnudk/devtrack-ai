@@ -70,8 +70,7 @@ export default function QuizModal({ topicName, notes }: QuizModalProps) {
     if (answered) return;
     setSelected(option);
     setAnswered(true);
-    console.log("option", option, "answer", quiz[current].answer);
-    if (option === quiz[current].answer) {
+    if (option.trim() === quiz[current].answer.trim()) {
       setScore((s) => s + 1);
     }
   };
@@ -173,7 +172,7 @@ export default function QuizModal({ topicName, notes }: QuizModalProps) {
             {/* Options */}
             <div className="space-y-2">
               {question.options.map((option) => {
-                const isCorrect = option === question.answer;
+                const isCorrect = option.trim() === question.answer.trim();
                 const isSelected = option === selected;
 
                 return (

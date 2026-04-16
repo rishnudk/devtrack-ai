@@ -33,7 +33,8 @@ export async function POST(request: NextRequest) {
       model: groq("llama-3.3-70b-versatile"),
       system: `You are a developer educator creating quiz questions.
 Return ONLY a valid JSON array, no markdown, no explanation.
-Format: [{"question": "...", "options": ["A", "B", "C", "D"], "answer": "A", "explanation": "..."}]`,
+Format: [{"question": "...", "options": ["Option 1", "Option 2", "Option 3", "Option 4"], "answer": "Option 1", "explanation": "..."}]
+IMPORTANT: The "answer" field MUST match one of the strings in the "options" array exactly.`,
       prompt: `Generate 5 multiple choice quiz questions for a developer learning ${topicName}. ${context}`,
     });
 
