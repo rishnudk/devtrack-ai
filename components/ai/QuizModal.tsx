@@ -70,6 +70,7 @@ export default function QuizModal({ topicName, notes }: QuizModalProps) {
     if (answered) return;
     setSelected(option);
     setAnswered(true);
+    console.log("option", option, "answer", quiz[current].answer);
     if (option === quiz[current].answer) {
       setScore((s) => s + 1);
     }
